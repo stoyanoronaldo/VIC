@@ -1,0 +1,20 @@
+Here are the concepts and relations extracted from the given text:
+
+* Concepts:
+	+ Sofia
+	+ Bulgaria
+	+ capital
+* Relations:
+	+ (Sofia, is, capital)
+	+ (Sofia, is capital of, Bulgaria)
+
+In Python triples, the result would be:
+
+```
+triples = [
+    ("Sofia", "is", "capital"),
+    ("Sofia", "is capital of", "Bulgaria")
+]
+```
+
+Note that the first triple represents the relation "is" between Sofia and capital, and the second triple represents the relation "is capital of" between Sofia and Bulgaria.
