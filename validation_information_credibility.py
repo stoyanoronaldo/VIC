@@ -7,9 +7,9 @@ loop = get_or_create_event_loop()
 # Now you can safely import llamaapi
 from llamaapi import LlamaAPI
 
-chatbot = False
+chatbot_on = False
 
-if chatbot:
+if chatbot_on:
     user_input = input("Please enter something: ")
 
     llama = LlamaAPI("LL-0GnzCST2ctEjinWEhaiT7ErxjRrZ4SfMq4hSsNWT3YNjynq8SZCDNdWbblwULzVK")
