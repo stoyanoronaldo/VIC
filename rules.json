@@ -1,0 +1,5 @@
+[
+    "{\"conditions\": [[\"condition1\", \"value1\", \"value2\"], [\"condition2\", \"value3\", \"value4\"]], \"conclusion\": [\"conclusion\", \"value5\", \"value6\"]}",
+    "{\"conditions\": [[\"condition1\", \"value1\", \"value2\"], [\"Q1\", \"P27\", \"Q11\"]], \"conclusion\": [\"Q1\", \"value4\", \"Q91\"]}",
+    "{\"conditions\": [[\"X1\", \"P1376\", \"X2\"]], \"conclusion\": [\"X1\", \"P31\", \"Q5119\"]}"
+]

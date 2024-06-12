@@ -1,5 +1,6 @@
 import asyncio
 import requests
+from rule import *
 
 def get_or_create_event_loop():
     try:
