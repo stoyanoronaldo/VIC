@@ -7,7 +7,7 @@ loop = get_or_create_event_loop()
 # Now you can safely import llamaapi
 from llamaapi import LlamaAPI
 
-chatbot_on = False
+chatbot_on = True
 
 if chatbot_on:
     user_input = input("Please enter something: ")
@@ -38,8 +38,24 @@ for triple in triples_list:
 
 merged_triples = merge_triples(triples_list, wikidata_mappings)
 
+true_triples = []
 for triple in merged_triples:
-    print(str(triple) + "  -->  " + str(check_wikidata_relationship(triple)))
+    if check_wikidata_relationship(triple):
+        new_triple = (triple[0][1], triple[1][1], triple[2][1]) 
+        true_triples.append(new_triple)
+
+#print(true_triples)
+
+forward_chaining_triples = forward_chaining(true_triples, rules)
+
+#print(forward_chaining_triples) 
+
+for triple in merged_triples:
+    subject = triple[0][1]
+    predicate = triple[1][1]
+    obj = triple[2][1]
+    fact = (subject, predicate, obj) 
+    print(str(triple) + "  -->  " + str(fact in forward_chaining_triples ))
 
 
 

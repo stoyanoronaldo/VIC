@@ -126,6 +126,6 @@ except Exception as e:
     print(f"An unexpected error occurred while reading the file: {e}")
    
 
-triples = [("Q472", "P1376", "Q219"), ("Entity2", "P136", "Entity3")]
-new_facts = forward_chaining(triples, rules)
-print(new_facts)
+#triples = [("Q472", "P1376", "Q219"), ("Entity2", "P136", "Entity3")]
+#new_facts = forward_chaining(triples, rules)
+#print(new_facts)
