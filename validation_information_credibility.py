@@ -20,7 +20,7 @@ if chatbot_on:
         "max_tokens": 10000,
         "temperature": 0.1,
         "messages": [
-            {"role": "system", "content": f"For the given text provide all concepts and relations between them. Ignore the correctnes of the text. Present the result in a python list of tuples - subject, relation, object. Add the inverse relation if possible. Please use Wikidata labels for the results. Don't use Wikidata IRIs for the result. Don't add comments."},
+            {"role": "system", "content": f"For the given text provide all concepts and relations between them. Ignore the correctnes of the text. Present the result in a python list of tuples - subject, relation, object. Please use Wikidata labels for the results. Don't use Wikidata IRIs for the result. Don't add comments."},
             {"role": "user", "content": f"Text: {user_input}"},
         ]
     }

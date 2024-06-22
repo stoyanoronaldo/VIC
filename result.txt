@@ -1,2 +1,1 @@
 (('J. K. Rowling', 'Q34660'), ('author of', 'P800'), ('Harry Potter series', 'Q8337'))  -->  True
-(('Harry Potter series', 'Q8337'), ('written by', 'P50'), ('J. K. Rowling', 'Q34660'))  -->  True
