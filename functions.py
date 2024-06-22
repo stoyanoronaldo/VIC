@@ -15,11 +15,7 @@ def get_answer_from_file(file_name):
     with open(file_name, 'r') as file:
         file_content = file.read()
 
-    start_index = file_content.find("```")
-    end_index = file_content.find("```", start_index + 1)
-    extracted_text = file_content[start_index + 3:end_index].strip()
-
-    return extracted_text
+    return file_content
 
 def get_answer_from_string(str):
     start_index = str.find("```")
@@ -52,13 +48,6 @@ def map_triple_to_wikidata(triple):
     predicate_id = search_wikidata_entity(triple[1], "property")
     object_id = search_wikidata_entity(triple[2], "item")
     
-    if not subject_id:
-        print(f"Could not find a Wikidata entity for subject '{triple[0]}'.")
-    if not predicate_id:
-        print(f"Could not find a Wikidata property for predicate '{triple[2]}'.")
-    if not object_id:
-        print(f"Could not find a Wikidata entity for object '{triple[1]}'.")
-    
     return (subject_id, predicate_id, object_id)
 
 def merge_triples(original_triples, mapped_triples):
@@ -78,12 +67,37 @@ def get_claim_ids(entity_id, property_id):
         return [claim['mainsnak']['datavalue']['value']['id'] for claim in claims if 'mainsnak' in claim and 'datavalue' in claim['mainsnak'] and 'value' in claim['mainsnak']['datavalue'] and 'id' in claim['mainsnak']['datavalue']['value']]
     return []
 
+def get_wikidata_label(wikidata_id):
+    url = f"https://www.wikidata.org/wiki/Special:EntityData/{wikidata_id}.json"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        entity = data['entities'][wikidata_id]
+        label = entity['labels']['en']['value']
+        return label
+    else:
+        return None
+
+def format_wikidata_objects(wikidata_ids):
+    formatted_objects = []
+    for wikidata_id in wikidata_ids:
+        label = get_wikidata_label(wikidata_id)
+        if label:
+            formatted_objects.append(f"{wikidata_id}({label})")
+        else:
+            formatted_objects.append(f"{wikidata_id}(No Label Found)")
+    return formatted_objects
+
 def check_wikidata_relationship(triple):
     subject_id = triple[0][1]
     predicate_id = triple[1][1]
     object_id = triple[2][1]
 
     claim_ids = get_claim_ids(subject_id, predicate_id)
-    if object_id in claim_ids:
-        return True
-    return False
+    if not claim_ids:
+        return False, f"No claims found for subject ID '{subject_id}'({triple[0][0]}) with predicate ID '{predicate_id}'({triple[1][0]})."
+    
+    if object_id not in claim_ids:
+        return False, f"Object ID '{object_id}'({triple[2][0]}) not found among claims for subject ID '{subject_id}'({triple[0][0]}) with predicate ID '{predicate_id}'({triple[1][0]}). Available claim IDs: {format_wikidata_objects(claim_ids)}."
+    
+    return True, "The relationship is correct."

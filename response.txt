@@ -1,18 +1,2 @@
-Here are the concepts and relations extracted from the given text:
-
-* Concepts:
-	+ Burgas
-	+ Bulgaria
-	+ capital
-* Relations:
-	+ (Burgas, is, capital)
-	+ (Burgas, is capital of, Bulgaria)
-
-In Python triples, the result would be:
-
-```
-triples = [
-    ("Burgas", "is", "capital"),
-    ("Burgas", "is capital of", "Bulgaria")
-]
-``
+[('J. K. Rowling', 'author of', 'Harry Potter series'), 
+ ('Harry Potter series', 'written by', 'J. K. Rowling')]
