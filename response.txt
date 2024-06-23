@@ -1,1 +1,1 @@
-[('Nelson Mandela', 'position held', 'President of South Africa'), ('Nelson Mandela', 'country', 'South Africa')]
+[('Great Wall of China', 'location', 'China')]

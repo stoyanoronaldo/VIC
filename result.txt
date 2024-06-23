@@ -1,5 +1,2 @@
-Nelson Mandela position held President of South Africa  -->  True
-
-Nelson Mandela country South Africa  --> False, because:
-No claims found for subject ID 'Q8023'(Nelson Mandela) with predicate ID 'P17'(country).
+Great Wall of China location China  --> True, because: A synonym relationship is correct
 

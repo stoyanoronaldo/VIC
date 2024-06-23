@@ -65,7 +65,7 @@ for triple in merged_triples:
         is_true_triple, explanation = check_wikidata_relationship(mapped_triple)
         if is_true_triple:
             true_triples.append(mapped_triple)
-            explanations_list[-1] = explanation
+            explanations_list[-1] = "A synonym relationship is correct"
             break
         else:
             explanations_list[-1] = explanations_list[-1] + "\nAND\n" + explanation
@@ -88,9 +88,13 @@ for index, triple in enumerate(merged_triples):
     obj = triple[2][1]
     fact = (subject, predicate, obj)
     output_str = f"{triple[0][0]} {triple[1][0]} {triple[2][0]}"
-    if fact in forward_chaining_triples or explanations_list[index] == "The relationship is correct.":
-        with open("result.txt", "a") as file:
-            file.write(output_str + "  -->  True\n\n")
+    if fact in forward_chaining_triples or explanations_list[index] == "The relationship is correct." or explanations_list[index] == "A synonym relationship is correct":
+        if not explanations_list[index] == "The relationship is correct.":
+            with open("result.txt", "a") as file:
+                file.write(output_str + "  --> True, because: " + explanations_list[index] + "\n\n")
+        else:
+            with open("result.txt", "a") as file:
+                file.write(output_str + "  -->  True\n\n")
     else:
          with open("result.txt", "a") as file:
             file.write(output_str + "  --> False, because:\n" + explanations_list[index] + "\n\n")
