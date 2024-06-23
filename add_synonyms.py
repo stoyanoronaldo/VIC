@@ -38,9 +38,9 @@ def add_synonyms_interactively(file_path):
             break
 
 # Example usage
-add_synonyms_interactively(synonyms_file_path)
+#add_synonyms_interactively(synonyms_file_path)
 
 # Print the synonyms dictionary
-synonyms = load_synonyms(synonyms_file_path)
-print("Synonyms dictionary:")
-print(synonyms)
+#synonyms = load_synonyms(synonyms_file_path)
+#print("Synonyms dictionary:")
+#print(get_synonyms(synonyms_file_path, "country"))

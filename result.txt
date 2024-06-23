@@ -1,1 +1,5 @@
-(('J. K. Rowling', 'Q34660'), ('author of', 'P800'), ('Harry Potter series', 'Q8337'))  -->  True
+Nelson Mandela position held President of South Africa  -->  True
+
+Nelson Mandela country South Africa  --> False, because:
+No claims found for subject ID 'Q8023'(Nelson Mandela) with predicate ID 'P17'(country).
+

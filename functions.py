@@ -35,12 +35,16 @@ def search_wikidata_entity(label, entity_type="item"):
         "search": label,
         "language": "en",
         "format": "json",
-        "type": entity_type
+        "type": entity_type,
+        "limit": 10
     }
     response = requests.get(url, params=params)
     data = response.json()
+    
     if data['search']:
-        return data['search'][0]['id']
+        for entity in data['search']:
+            if entity.get('label', '') == label:
+                return entity['id']
     return None
 
 def map_triple_to_wikidata(triple):

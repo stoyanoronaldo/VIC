@@ -1,4 +1,5 @@
 from functions import *
+from add_synonyms import *
 import ast
 
 # Ensure an event loop is created before importing llamaapi
@@ -55,6 +56,23 @@ for triple in merged_triples:
     if is_true_triple:
         new_triple = (triple[0][1], triple[1][1], triple[2][1]) 
         true_triples.append(new_triple)
+    else:
+       synonyms = get_synonyms(synonyms_file_path, triple[1][0])
+       for synonym in synonyms:
+        new_triple = (triple[0][0], synonym, triple[2][0])
+        new_triple_map = map_triple_to_wikidata(new_triple)
+        mapped_triple = tuple(zip(new_triple, new_triple_map))
+        is_true_triple, explanation = check_wikidata_relationship(mapped_triple)
+        if is_true_triple:
+            true_triples.append(mapped_triple)
+            explanations_list[-1] = explanation
+            break
+        else:
+            explanations_list[-1] = explanations_list[-1] + "\nAND\n" + explanation
+
+
+with open("triples.txt", "w") as file:
+    file.write(str(merged_triples))
 
 #print(true_triples)
 
@@ -69,12 +87,12 @@ for index, triple in enumerate(merged_triples):
     predicate = triple[1][1]
     obj = triple[2][1]
     fact = (subject, predicate, obj)
-    if fact in forward_chaining_triples:
+    output_str = f"{triple[0][0]} {triple[1][0]} {triple[2][0]}"
+    if fact in forward_chaining_triples or explanations_list[index] == "The relationship is correct.":
         with open("result.txt", "a") as file:
-            file.write(str(triple) + "  -->  " + str(fact in forward_chaining_triples) + "\n")
+            file.write(output_str + "  -->  True\n\n")
     else:
          with open("result.txt", "a") as file:
-            file.write(str(triple) + "  -->  " + str(fact in forward_chaining_triples) + ", because:\n" 
-                                + explanations_list[index] + "\n")
+            file.write(output_str + "  --> False, because:\n" + explanations_list[index] + "\n\n")
 
 print("Check result.txt")

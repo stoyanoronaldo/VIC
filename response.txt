@@ -1,1 +1,1 @@
-[('J. K. Rowling', 'author of', 'Harry Potter series')]
+[('Nelson Mandela', 'position held', 'President of South Africa'), ('Nelson Mandela', 'country', 'South Africa')]

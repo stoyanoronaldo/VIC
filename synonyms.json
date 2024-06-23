@@ -1,10 +1,23 @@
 {
-    "country": [
-        "located in",
-        "region",
-        "union"
-    ],
     "location": [
-        "place"
+        "country"
+    ],
+    "located in": [
+        "country"
+    ],
+    "is displayed in": [
+        "location"
+    ],
+    "author": [
+        "notable work"
+    ],
+    "author of":[
+        "notable work"
+    ],
+    "creator": [
+        "notable work"
+    ],
+    "creator of": [
+        "notable work"
     ]
 }

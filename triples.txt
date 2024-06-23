@@ -1,0 +1,2 @@
+[(('Nelson Mandela', 'Q8023'), ('position held', 'P39'), ('President of South Africa', 'Q273884')), 
+(('Nelson Mandela', 'Q8023'), ('country', 'P17'), ('South Africa', 'Q258'))]
